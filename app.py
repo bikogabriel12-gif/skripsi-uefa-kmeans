@@ -90,7 +90,8 @@ if not hasil.empty:
     st.write(f"**Cluster** : {cluster}")
     st.write(f"**Karakteristik Taktik** : {label_cluster[cluster]}")
     st.markdown("### Penjelasan Karakteristik Taktik")
-st.write(penjelasan_cluster[cluster])
+    st.write(penjelasan_cluster[cluster])
+
 
 
     # Statistik
