@@ -23,6 +23,43 @@ label_variabel = {
     "xG_Per_90": "Expected Goals (xG) / 90 Menit"
 }
 
+# Penjelasan singkat tiap cluster
+penjelasan_cluster = {
+    0: (
+        "Tim dalam cluster ini cenderung tidak mendominasi penguasaan bola dan memiliki "
+        "aktivitas serangan yang terbatas. Hal tersebut menunjukkan pendekatan permainan "
+        "yang lebih pasif dan berorientasi pada pertahanan."
+        "\n\n"
+        "Jumlah tekel yang relatif tinggi mengindikasikan fokus utama tim adalah membatasi "
+        "serangan lawan, sementara peluang ofensif diciptakan secara terbatas."
+    ),
+
+    1: (
+        "Cluster ini merepresentasikan tim dengan dominasi permainan yang kuat melalui "
+        "penguasaan bola dan jumlah operan yang tinggi. Pola ini menunjukkan kontrol tempo "
+        "dan alur permainan yang konsisten."
+        "\n\n"
+        "Tingginya nilai tembakan dan expected goals (xG) mencerminkan efektivitas serangan "
+        "yang baik, dengan pendekatan bertahan yang tidak terlalu intensif."
+    ),
+
+    2: (
+        "Tim pada cluster ini menunjukkan keseimbangan antara penguasaan bola, serangan, "
+        "dan pertahanan. Tidak terdapat kecenderungan dominasi maupun bertahan ekstrem."
+        "\n\n"
+        "Karakteristik tersebut menggambarkan pendekatan permainan yang stabil dan fleksibel "
+        "dalam menyesuaikan strategi pertandingan."
+    ),
+
+    3: (
+        "Cluster ini ditandai oleh intensitas bertahan yang tinggi dengan kecenderungan "
+        "memanfaatkan transisi cepat dan serangan balik."
+        "\n\n"
+        "Meskipun tidak mendominasi penguasaan bola, tim dalam cluster ini tetap mampu "
+        "menciptakan peluang serangan secara efektif melalui statistik umpan panjang yang sangat tinggi."
+    )
+}
+
 # Konfigurasi halaman
 st.set_page_config(
     page_title="Klasifikasi Taktik Tim UEFA Champions League 2024–2025",
@@ -52,6 +89,9 @@ if not hasil.empty:
     st.success("Hasil Klasifikasi")
     st.write(f"**Cluster** : {cluster}")
     st.write(f"**Karakteristik Taktik** : {label_cluster[cluster]}")
+    st.markdown("### Penjelasan Karakteristik Taktik")
+st.write(penjelasan_cluster[cluster])
+
 
     # Statistik
     st.subheader("Statistik Permainan Tim (Per 90 Menit)")
