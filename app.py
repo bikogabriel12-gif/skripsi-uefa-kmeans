@@ -12,6 +12,17 @@ label_cluster = {
     3: "Intensitas Bertahan Tinggi dan Transisi Cepat"
 }
 
+# Mapping nama variabel ke label 
+label_variabel = {
+    "Penguasaan_Bola_Percent": "Penguasaan Bola (%)",
+    "Passes_Per_90": "Jumlah Operan / 90 Menit",
+    "LongBalls_Per_90": "Umpan Panjang / 90 Menit",
+    "Tackles_Per_90": "Tackle / 90 Menit",
+    "Shots_Per_90": "Tembakan / 90 Menit",
+    "Carries_Per_90": "Progressive Carries / 90 Menit",
+    "xG_Per_90": "Expected Goals (xG) / 90 Menit"
+}
+
 # Konfigurasi halaman
 st.set_page_config(
     page_title="Klasifikasi Taktik Tim UEFA Champions League 2024–2025",
@@ -57,10 +68,14 @@ if not hasil.empty:
         "xG_Per_90"
     ]
 
-    statistik_tim = hasil[kolom_statistik].T
-    statistik_tim.columns = ["Nilai"]
+statistik_tim = hasil[kolom_statistik].T
+statistik_tim.columns = ["Nilai"]
 
-    st.table(statistik_tim.round(2))
+statistik_tim.index = statistik_tim.index.map(
+    lambda x: label_variabel.get(x, x)
+)
+
+st.table(statistik_tim.round(2))
 
 else:
     st.error("Tim tidak ditemukan.")
