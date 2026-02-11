@@ -12,7 +12,7 @@ label_cluster = {
     3: "Intensitas Bertahan Tinggi dan Transisi Cepat"
 }
 
-# Mapping nama variabel ke label 
+# Mapping nama variabel ke label
 label_variabel = {
     "Penguasaan_Bola_Percent": "Penguasaan Bola (%)",
     "Passes_Per_90": "Jumlah Operan / 90 Menit",
@@ -53,9 +53,7 @@ if not hasil.empty:
     st.write(f"**Cluster** : {cluster}")
     st.write(f"**Karakteristik Taktik** : {label_cluster[cluster]}")
 
-   
-    # Tampilkan Statistik Asli
-   
+    # Statistik
     st.subheader("Statistik Permainan Tim (Per 90 Menit)")
 
     kolom_statistik = [
@@ -68,14 +66,14 @@ if not hasil.empty:
         "xG_Per_90"
     ]
 
-statistik_tim = hasil[kolom_statistik].T
-statistik_tim.columns = ["Nilai"]
+    statistik_tim = hasil[kolom_statistik].T
+    statistik_tim.columns = ["Nilai"]
 
-statistik_tim.index = statistik_tim.index.map(
-    lambda x: label_variabel.get(x, x)
-)
+    statistik_tim.index = statistik_tim.index.map(
+        lambda x: label_variabel.get(x, x)
+    )
 
-st.table(statistik_tim.round(2))
+    st.table(statistik_tim.round(2))
 
 else:
     st.error("Tim tidak ditemukan.")
